@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Shaker.Application.Utilities;
+using Shaker.Application.Services.Utilities;
 using Shaker.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -27,7 +27,6 @@ public class JwtService : IJwtService
         List<Claim> claims = new List<Claim>
         {
             new Claim("Name", user.Name),
-            new Claim("Role", user.Role),
             new Claim("Id", user.Id.ToString())
         };
 

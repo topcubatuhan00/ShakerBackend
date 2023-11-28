@@ -1,5 +1,8 @@
-﻿namespace Shaker.Domain.Repositories.UserRepositories;
+﻿using Shaker.Domain.Entities;
+
+namespace Shaker.Domain.Repositories.UserRepositories;
 
 public interface IUserCommandRepository
 {
+    Task CreateUser(User user);
 }

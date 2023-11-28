@@ -1,6 +1,6 @@
 ﻿using Shaker.Domain.Entities;
 
-namespace Shaker.Application.Utilities;
+namespace Shaker.Application.Services.Utilities;
 
 public interface IJwtService
 {
