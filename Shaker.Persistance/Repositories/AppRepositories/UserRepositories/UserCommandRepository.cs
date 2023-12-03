@@ -21,7 +21,7 @@ public class UserCommandRepository : Repository, IUserCommandRepository
             "(Name, LastName, UserName, Email, Password," +
             "CreatorName, CreatedDate, UpdaterName, UpdatedDate, DeleterName, DeletedDate)" +
             "VALUES" +
-            "(@name, @lastname, @username, @email, @password" +
+            "(@name, @lastname, @username, @email, @password," +
             "@creatorname, @createddate, @updatername, @updateddate, @deletername, @deleteddate);" +
             "SELECT SCOPE_IDENTITY();";
 
@@ -34,10 +34,10 @@ public class UserCommandRepository : Repository, IUserCommandRepository
 
         command.Parameters.AddWithValue("@creatorname", user.CreatorName);
         command.Parameters.AddWithValue("@createddate", user.CreatedDate);
-        command.Parameters.AddWithValue("@updatername", user.UpdaterName);
-        command.Parameters.AddWithValue("@updateddate", user.UpdatedDate);
-        command.Parameters.AddWithValue("@deletername", user.DeleterName);
-        command.Parameters.AddWithValue("@deleteddate", user.DeletedDate);
+        command.Parameters.AddWithValue("@updatername", DBNull.Value);
+        command.Parameters.AddWithValue("@updateddate", DBNull.Value);
+        command.Parameters.AddWithValue("@deletername", DBNull.Value);
+        command.Parameters.AddWithValue("@deleteddate", DBNull.Value);
 
         await command.ExecuteNonQueryAsync();
     }

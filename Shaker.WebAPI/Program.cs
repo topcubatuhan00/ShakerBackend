@@ -38,6 +38,8 @@ public class Program
         builder.Services.JwtServiceCollections();
         builder.Services.ApplicationServiceConfigurations();
 
+        builder.Services.AddSwaggerGen();
+
         builder.Services.AddCors(options =>
         {
             options.AddDefaultPolicy(builder =>
@@ -61,6 +63,9 @@ public class Program
             app.UseSwaggerUI();
         }
         app.UseCors();
+
+        app.UseSwagger();
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();

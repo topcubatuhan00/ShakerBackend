@@ -37,6 +37,7 @@ public class AuthController : CustomBaseController
     }
 
     // register
+    [HttpPost("[action]")]
     public async Task<IActionResult> Register([FromBody] UserRegisterModel model)
     {
         await _authService.Register(model);
