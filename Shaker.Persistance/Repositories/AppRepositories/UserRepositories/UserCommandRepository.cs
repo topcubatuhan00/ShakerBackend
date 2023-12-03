@@ -7,7 +7,11 @@ namespace Shaker.Persistance.Repositories.AppRepositories.UserRepositories;
 public class UserCommandRepository : Repository, IUserCommandRepository
 {
     #region Ctor
-    public UserCommandRepository(SqlConnection context, SqlTransaction transaction)
+    public UserCommandRepository
+    (
+        SqlConnection context,
+        SqlTransaction transaction
+    )
     {
         this._context = context;
         this._transaction = transaction;

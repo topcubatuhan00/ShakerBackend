@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Shaker.Application.Services;
 using Shaker.Application.Services.Utilities;
+using Shaker.Domain.Entities;
 using Shaker.Domain.Models.AuthModels;
 using Shaker.Domain.UnitOfWork;
-using Shaker.Domain.Entities;
 
 namespace Shaker.Persistance.Services;
 

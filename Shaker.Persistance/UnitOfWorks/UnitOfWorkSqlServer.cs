@@ -1,5 +1,5 @@
-﻿using Shaker.Domain.UnitOfWork;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Shaker.Domain.UnitOfWork;
 
 namespace Shaker.Persistance.UnitOfWorks;
 
@@ -10,7 +10,10 @@ public class UnitOfWorkSqlServer : IUnitOfWork
     #endregion
 
     #region Ctor
-    public UnitOfWorkSqlServer(IConfiguration configuration)
+    public UnitOfWorkSqlServer
+    (
+        IConfiguration configuration
+    )
     {
         _configuration = configuration;
     }

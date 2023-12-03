@@ -9,9 +9,9 @@ namespace Shaker.WebAPI.Controllers;
 [ApiController]
 public class AuthController : CustomBaseController
 {
-	#region Fields
-	private readonly IAuthService _authService;
-	private readonly IConfiguration _configuration;
+    #region Fields
+    private readonly IAuthService _authService;
+    private readonly IConfiguration _configuration;
     #endregion
 
     #region Ctor

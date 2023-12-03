@@ -12,7 +12,10 @@ public class UnitOfWorkSqlServerAdapter : IUnitOfWorkAdapter
     #endregion
 
     #region Ctor
-    public UnitOfWorkSqlServerAdapter(string connectionString)
+    public UnitOfWorkSqlServerAdapter
+    (
+        string connectionString
+    )
     {
         _context = new SqlConnection(connectionString);
         _context.Open();

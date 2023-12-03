@@ -15,7 +15,10 @@ public class JwtService : IJwtService
     #endregion
 
     #region Ctor
-    public JwtService(IConfiguration configuration)
+    public JwtService
+    (
+        IConfiguration configuration
+    )
     {
         _configuration = configuration;
     }

@@ -9,7 +9,7 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
 {
     #region Fields
 
-    #region User
+    #region UserFields
     public IUserCommandRepository userCommandRepository { get; }
     public IUserQueryRepository userQueryRepository { get; }
     #endregion
@@ -17,7 +17,11 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
     #endregion
 
     #region Ctor
-    public UnitOfWorkSqlServerRepository(SqlConnection context, SqlTransaction transaction)
+    public UnitOfWorkSqlServerRepository
+    (
+        SqlConnection context,
+        SqlTransaction transaction
+    )
     {
         #region User
         userCommandRepository = new UserCommandRepository(context, transaction);

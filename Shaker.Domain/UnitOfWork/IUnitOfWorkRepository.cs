@@ -4,8 +4,8 @@ namespace Shaker.Domain.UnitOfWork;
 
 public interface IUnitOfWorkRepository
 {
-	#region User
-	IUserCommandRepository userCommandRepository { get; }
-	IUserQueryRepository userQueryRepository { get; }
-	#endregion
+    #region User
+    IUserCommandRepository userCommandRepository { get; }
+    IUserQueryRepository userQueryRepository { get; }
+    #endregion
 }
