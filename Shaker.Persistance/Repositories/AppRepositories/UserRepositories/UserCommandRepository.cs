@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Shaker.Domain.Entities;
+using Shaker.Domain.Models.UserModels;
 using Shaker.Domain.Repositories.UserRepositories;
 
 namespace Shaker.Persistance.Repositories.AppRepositories.UserRepositories;
@@ -42,6 +43,15 @@ public class UserCommandRepository : Repository, IUserCommandRepository
         command.Parameters.AddWithValue("@updateddate", DBNull.Value);
         command.Parameters.AddWithValue("@deletername", DBNull.Value);
         command.Parameters.AddWithValue("@deleteddate", DBNull.Value);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task DeleteUser(int userId)
+    {
+        var query = "DELETE FROM [User] WHERE Id=@id";
+        var command = CreateCommand(query);
+        command.Parameters.AddWithValue("@name", userId);
 
         await command.ExecuteNonQueryAsync();
     }

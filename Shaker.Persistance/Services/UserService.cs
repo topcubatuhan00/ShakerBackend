@@ -38,6 +38,40 @@ public class UserService : IUserService
             context.SaveChanges();
         }
     }
+
+    public async Task DeleteUser(int id)
+    {
+        using (var context = _unitOfWork.Create())
+        {
+            var check = await context.Repositories.userQueryRepository.UserIdIsExist(id);
+            if (!check) throw new Exception("User Not Found");
+
+            await context.Repositories.userCommandRepository.DeleteUser(id);
+            context.SaveChanges();
+        }
+    }
+
+    public Task GetAllUsers()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task GetUser(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    //public async Task UpdateUser(UpdateUserModel model)
+    //{
+    //    using (var context = _unitOfWork.Create())
+    //    {
+    //        var check = await context.Repositories.userQueryRepository.UserIdIsExist(model.Id);
+    //        if (!check) throw new Exception("User Not Found");
+
+    //        await context.Repositories.userCommandRepository.UpdateUser(model);
+    //        context.SaveChanges();
+    //    }
+    //}
     #endregion
 
 }

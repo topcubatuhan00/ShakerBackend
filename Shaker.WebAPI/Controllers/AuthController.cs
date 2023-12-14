@@ -33,7 +33,7 @@ public class AuthController : CustomBaseController
     public async Task<IActionResult> Login([FromBody] UserLoginModel model)
     {
         var token = await _authService.Login(model);
-        return Ok(token);
+        return Ok(new { Token = token });
     }
 
     // register
