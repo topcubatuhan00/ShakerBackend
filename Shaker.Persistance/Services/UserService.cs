@@ -60,18 +60,6 @@ public class UserService : IUserService
     {
         throw new NotImplementedException();
     }
-
-    //public async Task UpdateUser(UpdateUserModel model)
-    //{
-    //    using (var context = _unitOfWork.Create())
-    //    {
-    //        var check = await context.Repositories.userQueryRepository.UserIdIsExist(model.Id);
-    //        if (!check) throw new Exception("User Not Found");
-
-    //        await context.Repositories.userCommandRepository.UpdateUser(model);
-    //        context.SaveChanges();
-    //    }
-    //}
     #endregion
 
 }

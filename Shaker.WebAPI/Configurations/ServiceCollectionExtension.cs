@@ -13,6 +13,7 @@ public static class ServiceCollectionExtension
         #region AppScopes
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IShakersService, ShakersService>();
         #endregion
 
         #region Utilities

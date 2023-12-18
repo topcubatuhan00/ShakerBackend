@@ -1,5 +1,4 @@
 ﻿using Shaker.Domain.Entities;
-using Shaker.Domain.Models.UserModels;
 
 namespace Shaker.Domain.Repositories.UserRepositories;
 
