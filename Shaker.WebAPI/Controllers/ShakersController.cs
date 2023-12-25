@@ -5,7 +5,7 @@ using Shaker.WebAPI.CustomControllerBase;
 
 namespace Shaker.WebAPI.Controllers;
 
-[Route("api/[controller]")]
+[Route("[controller]")]
 [ApiController]
 public class ShakersController : CustomBaseController
 {

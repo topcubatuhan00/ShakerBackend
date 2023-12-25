@@ -36,7 +36,8 @@ public class ShakersQueryRepository : Repository, IShakersQueryRepository
                     BuildingName = reader["BuildingName"] != DBNull.Value ? reader["BuildingName"].ToString() : string.Empty,
                     FloorCount = reader["FloorCount"] != DBNull.Value ? Convert.ToInt32(reader["FloorCount"]) : -1,
                     RoomName = reader["RoomName"] != DBNull.Value ? reader["RoomName"].ToString() : string.Empty,
-                    ShakerOptionsId = reader["ShakerOptionsId"] != DBNull.Value ? Convert.ToInt32(reader["ShakerOptionsId"]) : -1
+                    ShakerOptionsId = reader["ShakerOptionsId"] != DBNull.Value ? Convert.ToInt32(reader["ShakerOptionsId"]) : -1,
+                    Status = Convert.ToBoolean(reader["Status"])
                 };
 
                 shakersList.Add(shaker);
@@ -62,7 +63,8 @@ public class ShakersQueryRepository : Repository, IShakersQueryRepository
                 BuildingName = reader["BuildingName"] != DBNull.Value ? reader["BuildingName"].ToString() : string.Empty,
                 FloorCount = reader["FloorCount"] != DBNull.Value ? Convert.ToInt32(reader["FloorCount"]) : -1,
                 RoomName = reader["RoomName"] != DBNull.Value ? reader["RoomName"].ToString() : string.Empty,
-                ShakerOptionsId = reader["ShakerOptionsId"] != DBNull.Value ? Convert.ToInt32(reader["ShakerOptionsId"]) : -1
+                ShakerOptionsId = reader["ShakerOptionsId"] != DBNull.Value ? Convert.ToInt32(reader["ShakerOptionsId"]) : -1,
+                Status = Convert.ToBoolean(reader["Status"])
             };
         }
     }

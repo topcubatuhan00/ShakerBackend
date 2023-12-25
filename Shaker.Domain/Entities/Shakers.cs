@@ -9,4 +9,5 @@ public class Shakers : EntityBase
     public int FloorCount { get; set; }
     public string RoomName { get; set; }
     public int ShakerOptionsId { get; set; }
+    public bool Status { get; set; }
 }

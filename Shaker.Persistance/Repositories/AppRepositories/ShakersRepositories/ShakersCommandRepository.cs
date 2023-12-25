@@ -23,10 +23,10 @@ public class ShakersCommandRepository : Repository, IShakersCommandRepository
     public async Task CreateShaker(Shakers shakers)
     {
         var query = "INSERT INTO [Shakers]" +
-            "(ShakerName, BuildingName, FloorCount, RoomName, ShakerOptionsId," +
+            "(ShakerName, BuildingName, FloorCount, RoomName, ShakerOptionsId, Status," +
             "CreatorName, CreatedDate, UpdaterName, UpdatedDate, DeleterName, DeletedDate)" +
             "VALUES" +
-            "(@shakerName, @buildingName, @floorCount, @roomName, @shakerOptionsId," +
+            "(@shakerName, @buildingName, @floorCount, @roomName, @shakerOptionsId, @status," +
             "@creatorname, @createddate, @updatername, @updateddate, @deletername, @deleteddate);" +
             "SELECT SCOPE_IDENTITY();";
 
@@ -36,6 +36,7 @@ public class ShakersCommandRepository : Repository, IShakersCommandRepository
         command.Parameters.AddWithValue("@floorCount", shakers.FloorCount);
         command.Parameters.AddWithValue("@roomName", shakers.RoomName);
         command.Parameters.AddWithValue("@shakerOptionsId", shakers.ShakerOptionsId);
+        command.Parameters.AddWithValue("@status", shakers.Status);
 
         command.Parameters.AddWithValue("@creatorname", shakers.CreatorName);
         command.Parameters.AddWithValue("@createddate", shakers.CreatedDate);
