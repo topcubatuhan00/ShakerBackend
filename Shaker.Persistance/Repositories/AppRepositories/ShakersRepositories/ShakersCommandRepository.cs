@@ -50,7 +50,7 @@ public class ShakersCommandRepository : Repository, IShakersCommandRepository
 
     public async Task DeleteShaker(int shakerId)
     {
-        var query = "DELETE FROM [Shakers] WHERE Id=@id";
+        var query = "UPDATE [Shakers] SET DeletedDate = GETDATE() WHERE Id = @id";
         var command = CreateCommand(query);
         command.Parameters.AddWithValue("@id", shakerId);
 

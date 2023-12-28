@@ -41,7 +41,7 @@ public class ShakersService : IShakersService
         using (var context = _unitOfWork.Create())
         {
             var check = await context.Repositories.shakersQueryRepository.GetShaker(id);
-            if (check != null) throw new Exception("Shaker Not Found");
+            if (check == null) throw new Exception("Shaker Not Found");
 
             await context.Repositories.shakersCommandRepository.DeleteShaker(id);
             context.SaveChanges();

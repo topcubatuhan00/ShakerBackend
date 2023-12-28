@@ -39,5 +39,21 @@ public class ShakersController : CustomBaseController
         await _shakersService.CreateShaker(model);
         return Ok("Success");
     }
+
+    [HttpGet("[action]/{id:int}")]
+    public async Task<IActionResult> DeleteShaker(int id)
+    {
+        try
+        {
+            await _shakersService.DeleteShaker(id);
+            var res = new { Succes = "Success" };
+            return Ok(res);
+        }
+        catch (Exception ex)
+        {
+            // Hata durumunda isteği başarısız olarak işaretleyebilirsiniz.
+            return StatusCode(500, $"Internal Server Error: {ex.Message}");
+        }
+    }
     #endregion
 }

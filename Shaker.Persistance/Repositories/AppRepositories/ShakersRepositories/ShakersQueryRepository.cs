@@ -23,7 +23,7 @@ public class ShakersQueryRepository : Repository, IShakersQueryRepository
     {
         var shakersList = new List<Shakers>(); // Shakers tipinde bir liste oluşturuyoruz
 
-        var command = CreateCommand("SELECT * FROM [Shakers]");
+        var command = CreateCommand("SELECT * FROM [Shakers] WHERE DeletedDate IS NULL");
 
         using (var reader = command.ExecuteReader())
         {
@@ -49,8 +49,8 @@ public class ShakersQueryRepository : Repository, IShakersQueryRepository
 
     public async Task<Shakers> GetShaker(int shakerId)
     {
-        var command = CreateCommand("SELECT * FROM [Shakers] WHERE Id= @id");
-        command.Parameters.AddWithValue("@Id", shakerId);
+        var command = CreateCommand("SELECT * FROM [Shakers] WHERE Id=@id AND DeletedDate IS NULL");
+        command.Parameters.AddWithValue("@id", shakerId);
 
         using (var reader = command.ExecuteReader())
         {
