@@ -17,7 +17,7 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
     #endregion
 
     #region ShakerFileds
-   
+
     public IShakersCommandRepository shakersCommandRepository { get; }
 
     public IShakersQueryRepository shakersQueryRepository { get; }
@@ -39,7 +39,7 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
 
         #region Shaker
         shakersCommandRepository = new ShakersCommandRepository(context, transaction);
-        shakersQueryRepository = new ShakersQueryRepository(context,transaction);
+        shakersQueryRepository = new ShakersQueryRepository(context, transaction);
         #endregion
     }
     #endregion

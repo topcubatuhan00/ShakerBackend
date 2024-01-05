@@ -21,7 +21,7 @@ public class ShakersQueryRepository : Repository, IShakersQueryRepository
     #region Methods
     public async Task<IList<Shakers>> GetAllShakers()
     {
-        var shakersList = new List<Shakers>(); // Shakers tipinde bir liste oluşturuyoruz
+        var shakersList = new List<Shakers>();
 
         var command = CreateCommand("SELECT * FROM [Shakers] WHERE DeletedDate IS NULL");
 
