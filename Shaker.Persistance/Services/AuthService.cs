@@ -59,17 +59,18 @@ public class AuthService : IAuthService
         return _jwtService.CreateToken(user);
     }
 
-    public async Task Register(UserRegisterModel model)
+    public async Task<string> Register(UserRegisterModel model)
     {
-        model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
         if (await UserIsExist(model.UserName)) throw new Exception("User Already Registered");
+        model.Password = BCrypt.Net.BCrypt.HashPassword(model.Password);
 
         using (var context = _unitOfWork.Create())
         {
             var user = _mapper.Map<User>(model);
             await context.Repositories.userCommandRepository.CreateUser(user);
             context.SaveChanges();
+
+            return _jwtService.CreateToken(user);
         }
     }
 

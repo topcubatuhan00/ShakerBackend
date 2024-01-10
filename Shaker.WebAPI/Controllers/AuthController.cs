@@ -40,8 +40,8 @@ public class AuthController : CustomBaseController
     [HttpPost("[action]")]
     public async Task<IActionResult> Register([FromBody] UserRegisterModel model)
     {
-        await _authService.Register(model);
-        return Ok("Success");
+        var token = await _authService.Register(model);
+        return Ok(new { Token = token });
     }
 
     #endregion
