@@ -1,4 +1,5 @@
-﻿using Shaker.Application.Services;
+﻿using Hangfire;
+using Shaker.Application.Services;
 using Shaker.Domain.UnitOfWork;
 using Shaker.Persistance.Mapping;
 using Shaker.Persistance.Services;
@@ -14,6 +15,7 @@ public static class ServiceCollectionExtension
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IShakersService, ShakersService>();
+        services.AddScoped<IShakerOptionsService, ShakerOptionsService>();
         #endregion
 
         #region Utilities

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
+using Shaker.Domain.Repositories.ShakerOptionsRepositories;
 using Shaker.Domain.Repositories.ShakersRepositories;
 using Shaker.Domain.Repositories.UserRepositories;
 using Shaker.Domain.UnitOfWork;
+using Shaker.Persistance.Repositories.AppRepositories.ShakerOptionsRepositories;
 using Shaker.Persistance.Repositories.AppRepositories.ShakersRepositories;
 using Shaker.Persistance.Repositories.AppRepositories.UserRepositories;
 
@@ -23,6 +25,11 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
     public IShakersQueryRepository shakersQueryRepository { get; }
     #endregion
 
+    #region ShakerOptionsFields
+    public IShakerOptionsCommandRepository shakerOptionsCommandRepository { get; }
+    public IShakerOptionsQueryRepository shakerOptionsQueryRepository { get; }
+    #endregion
+
     #endregion
 
     #region Ctor
@@ -40,6 +47,11 @@ public class UnitOfWorkSqlServerRepository : IUnitOfWorkRepository
         #region Shaker
         shakersCommandRepository = new ShakersCommandRepository(context, transaction);
         shakersQueryRepository = new ShakersQueryRepository(context, transaction);
+        #endregion
+
+        #region ShakerOptions
+        shakerOptionsCommandRepository = new ShakerOptionsCommandRepository(context, transaction);
+        shakerOptionsQueryRepository = new ShakerOptionsQueryRepository(context, transaction);
         #endregion
     }
     #endregion
