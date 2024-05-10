@@ -28,14 +28,21 @@ internal class ShakerOptionsQueryRepository : Repository, IShakerOptionsQueryRep
         {
             reader.Read();
 
-            return new ShakerOptions
+            if (reader.HasRows)
             {
-                Id = Convert.ToInt32(reader["Id"]),
-                ShakerId = Convert.ToInt32(reader["ShakerId"]),
-                IsStoped = Convert.ToBoolean(reader["IsStoped"]),
-                RunningTime = Convert.ToInt32(reader["RunningTime"]),
-                StopedTime = Convert.ToDateTime(reader["StopedTime"])
-            };
+                return new ShakerOptions
+                {
+                    Id = Convert.ToInt32(reader["Id"]),
+                    ShakerId = Convert.ToInt32(reader["ShakerId"]),
+                    IsStoped = Convert.ToBoolean(reader["IsStoped"]),
+                    RunningTime = Convert.ToInt32(reader["RunningTime"]),
+                    StopedTime = Convert.ToDateTime(reader["StopedTime"])
+                };
+            }
+            else
+            {
+                throw new Exception("Data Not Found");
+            }
         }
     }
 

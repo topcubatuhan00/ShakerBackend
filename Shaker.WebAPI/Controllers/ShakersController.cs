@@ -33,6 +33,13 @@ public class ShakersController : CustomBaseController
         return Ok(res);
     }
 
+    [HttpGet("[action]/{id:int}")]
+    public async Task<IActionResult> GetShakers(int id)
+    {
+        var res = await _shakersService.GetShaker(id);
+        return Ok(res);
+    }
+
     [HttpPost("[action]")]
     public async Task<IActionResult> CreateShakers(CreateShakersModel model)
     {

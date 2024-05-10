@@ -3,7 +3,6 @@ using Shaker.Application.Services;
 using Shaker.Domain.Entities;
 using Shaker.Domain.Models.ShakerOptionsModel;
 using Shaker.Domain.UnitOfWork;
-using System.ComponentModel;
 
 namespace Shaker.Persistance.Services
 {
@@ -40,17 +39,19 @@ namespace Shaker.Persistance.Services
                     entity.StopedTime = DateTime.Now.AddMinutes(entity.RunningTime);
 
                     await context.Repositories.shakerOptionsCommandRepository.CreateShaker(entity);
+                    ChangeStatusOne(entity.ShakerId);
                     context.SaveChanges();
                     var generatedId = await GetLastShakerOptionsId();
                     // Her ShakerOptions için ayrı bir Timer oluştur
                     Timer timer = new Timer((state) =>
                     {
-                        Task.Run(async () => await StopShaker(generatedId));
+                        Task.Run(void () => ChangeStatusZero(entity.ShakerId, generatedId));
                     }, null, entity.RunningTime * 60000, Timeout.Infinite);
                 }
                 else
                 {
                     await context.Repositories.shakerOptionsCommandRepository.CreateShaker(entity);
+                    ChangeStatusOne(entity.ShakerId);
                     context.SaveChanges();
                 }
             }
@@ -65,10 +66,7 @@ namespace Shaker.Persistance.Services
                 shaker.RunningTime = 0;
                 await context.Repositories.shakerOptionsCommandRepository.UpdateShakerOptions(shaker);
                 context.SaveChanges();
-                ChangeStatus(shaker.ShakerId);
             }
-
-            Console.WriteLine($"Shaker {id} stopped!");
         }
 
         private async Task<int> GetLastShakerOptionsId()
@@ -80,11 +78,20 @@ namespace Shaker.Persistance.Services
             }
         }
 
-        private void ChangeStatus(int shakerId)
+        private async void ChangeStatusZero(int shakerId, int optionsId)
         {
             using (var context = _unitOfWork.Create())
             {
-                context.Repositories.shakerOptionsCommandRepository.UpdateShakerStatus(shakerId);
+                await context.Repositories.shakerOptionsCommandRepository.UpdateShakerStatusZero(shakerId);
+                context.SaveChanges();
+                await StopShaker(optionsId);
+            }
+        }
+        private async void ChangeStatusOne(int shakerId)
+        {
+            using (var context = _unitOfWork.Create())
+            {
+                await context.Repositories.shakerOptionsCommandRepository.UpdateShakerStatusOne(shakerId);
                 context.SaveChanges();
             }
         }

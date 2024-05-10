@@ -28,6 +28,7 @@ public class ShakerOptionsController : CustomBaseController
     public async Task<IActionResult> GetShakerOptions(int id)
     {
         var res = await _shakerOptionsService.GetShakerOptions(id);
+        if (res == null) return Ok("404");
         return Ok(res);
     }
 

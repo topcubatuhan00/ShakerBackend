@@ -6,5 +6,6 @@ public interface IShakerOptionsCommandRepository
 {
     Task CreateShaker(ShakerOptions shakerOptions);
     Task UpdateShakerOptions(ShakerOptions shakerOptions);
-    Task UpdateShakerStatus(int id);
+    Task UpdateShakerStatusZero(int id);
+    Task UpdateShakerStatusOne(int id);
 }

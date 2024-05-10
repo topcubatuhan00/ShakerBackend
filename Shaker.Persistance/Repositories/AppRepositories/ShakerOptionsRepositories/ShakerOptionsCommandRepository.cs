@@ -24,7 +24,7 @@ public class ShakerOptionsCommandRepository : Repository, IShakerOptionsCommandR
         var query = "INSERT INTO [ShakerOptions]" +
             "(RunningTime, IsStoped, StopedTime, ShakerId)" +
             "VALUES" +
-            "(@rnTime, @isStoped, @stTime, @skrId);"+
+            "(@rnTime, @isStoped, @stTime, @skrId);" +
             "SELECT SCOPE_IDENTITY();";
 
         var command = CreateCommand(query);
@@ -49,9 +49,18 @@ public class ShakerOptionsCommandRepository : Repository, IShakerOptionsCommandR
         await command.ExecuteNonQueryAsync();
     }
 
-    public async Task UpdateShakerStatus(int id)
+    public async Task UpdateShakerStatusZero(int id)
     {
         var query = "update [Shakers] set Status=0 where Id=@id";
+        var command = CreateCommand(query);
+        command.Parameters.AddWithValue("@id", id);
+
+        await command.ExecuteNonQueryAsync();
+    }
+
+    public async Task UpdateShakerStatusOne(int id)
+    {
+        var query = "update [Shakers] set Status=1 where Id=@id";
         var command = CreateCommand(query);
         command.Parameters.AddWithValue("@id", id);
 
