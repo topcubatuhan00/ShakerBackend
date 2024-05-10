@@ -32,7 +32,7 @@ namespace Shaker.Persistance.Services
         {
             using (var context = _unitOfWork.Create())
             {
-                
+                //await DeleteShakerOptions(model.ShakerId);
                 var entity = _mapper.Map<ShakerOptions>(model);
                 if (entity.RunningTime > 0)
                 {
@@ -63,7 +63,6 @@ namespace Shaker.Persistance.Services
             {
                 var shaker = await context.Repositories.shakerOptionsQueryRepository.GetShakerOptions(id);
                 shaker.IsStoped = true;
-                shaker.RunningTime = 0;
                 await context.Repositories.shakerOptionsCommandRepository.UpdateShakerOptions(shaker);
                 context.SaveChanges();
             }
@@ -96,9 +95,13 @@ namespace Shaker.Persistance.Services
             }
         }
 
-        public Task DeleteShakerOptions(int id)
+        public async Task DeleteShakerOptions(int id)
         {
-            throw new NotImplementedException();
+            using(var context = _unitOfWork.Create())
+            {
+                await context.Repositories.shakerOptionsCommandRepository.RemoveShakerOptions(id);
+                context.SaveChanges();
+            }
         }
 
         public async Task<ShakerOptions> GetShakerOptions(int id)
@@ -110,6 +113,15 @@ namespace Shaker.Persistance.Services
             }
         }
 
+        public async Task<ShakerOptions> GetOptionsForUI(int id)
+        {
+            using (var context = _unitOfWork.Create())
+            {
+                var res = await context.Repositories.shakerOptionsQueryRepository.GetOptionsForUI(id);
+                return res;
+            }
+        }
+
         public async Task UpdateShakerOptions(UpdateShakerOptionsModel model)
         {
             using (var context = _unitOfWork.Create())
@@ -117,6 +129,15 @@ namespace Shaker.Persistance.Services
                 var entity = _mapper.Map<ShakerOptions>(model);
                 await context.Repositories.shakerOptionsCommandRepository.UpdateShakerOptions(entity);
                 context.SaveChanges();
+            }
+        }
+
+        public async Task<IList<GetAllOptionsModel>> GetAll(int shakerId)
+        {
+            using (var context = _unitOfWork.Create())
+            {
+                var res = await context.Repositories.shakerOptionsQueryRepository.GetAll(shakerId);
+                return res;
             }
         }
         #endregion

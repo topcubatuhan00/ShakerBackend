@@ -8,4 +8,5 @@ public interface IShakerOptionsCommandRepository
     Task UpdateShakerOptions(ShakerOptions shakerOptions);
     Task UpdateShakerStatusZero(int id);
     Task UpdateShakerStatusOne(int id);
+    Task RemoveShakerOptions(int id);
 }

@@ -23,10 +23,10 @@ public class UserCommandRepository : Repository, IUserCommandRepository
     {
         var query = "INSERT INTO [User]" +
             "(Name, LastName, UserName, Email, Password," +
-            "CreatorName, CreatedDate, UpdaterName, UpdatedDate, DeleterName, DeletedDate)" +
+            "CreatorName, CreatedDate, UpdaterName, UpdatedDate, DeleterName, DeletedDate, IsActive)" +
             "VALUES" +
             "(@name, @lastname, @username, @email, @password," +
-            "@creatorname, @createddate, @updatername, @updateddate, @deletername, @deleteddate);" +
+            "@creatorname, @createddate, @updatername, @updateddate, @deletername, @deleteddate, @active);" +
             "SELECT SCOPE_IDENTITY();";
 
         var command = CreateCommand(query);
@@ -35,6 +35,7 @@ public class UserCommandRepository : Repository, IUserCommandRepository
         command.Parameters.AddWithValue("@username", user.UserName);
         command.Parameters.AddWithValue("@email", user.Email);
         command.Parameters.AddWithValue("@password", user.Password);
+        command.Parameters.AddWithValue("@active", true);
 
         command.Parameters.AddWithValue("@creatorname", user.CreatorName);
         command.Parameters.AddWithValue("@createddate", user.CreatedDate);

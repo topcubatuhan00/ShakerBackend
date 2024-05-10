@@ -9,4 +9,6 @@ public interface IShakerOptionsService
     Task UpdateShakerOptions(UpdateShakerOptionsModel model);
     Task DeleteShakerOptions(int id);
     Task<ShakerOptions> GetShakerOptions(int id);
+    Task<ShakerOptions> GetOptionsForUI(int id);
+    Task<IList<GetAllOptionsModel>> GetAll(int shakerId);
 }

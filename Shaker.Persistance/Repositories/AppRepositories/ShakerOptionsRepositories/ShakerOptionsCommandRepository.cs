@@ -66,5 +66,14 @@ public class ShakerOptionsCommandRepository : Repository, IShakerOptionsCommandR
 
         await command.ExecuteNonQueryAsync();
     }
+
+    public async Task RemoveShakerOptions(int id)
+    {
+        var query = "Delete from [ShakerOptions] where ShakerId=@id";
+        var command = CreateCommand(query);
+        command.Parameters.AddWithValue("@id", id);
+
+        await command.ExecuteNonQueryAsync();
+    }
     #endregion
 }
